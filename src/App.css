@@ -1,5 +1,5 @@
 .App {
-  text-align: center;
+  text-align: left;
 }
 
 .App-logo {
@@ -21,6 +21,33 @@
 .App-intro {
   font-size: large;
 }
+
+.field {
+  padding-top: 30px;
+}
+
+.sort-btn {
+  border-bottom: 1px dashed #333;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.sort-btn._asc::after {
+  content: '▲';
+  display: inline-block;
+  font-size: 75%;
+  margin-left: 3px;
+  vertical-align: middle;
+}
+
+.sort-btn._desc::after {
+  content: '▼';
+  display: inline-block;
+  font-size: 75%;
+  margin-left: 3px;
+  vertical-align: middle;
+}
+
 
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }

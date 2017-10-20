@@ -22,13 +22,30 @@ class Owls extends Component {
   }
 
   render() {
-    let users = this.state.users.map(user => <li key={user.id}>{user.name}</li>);
+    let users = this.state.users.map(user => <tr key={user.id}><td>{user.id}</td><td>{user.name}</td><td>{user.age}</td><td>{user.phone}</td></tr>);
     return (
-      <div>
-        <h1>Hello, from owls!</h1>
-        <ul>
-          {users}
-        </ul>
+      <div className='container'>
+        <div className="field">
+          <label className="label" for='searchInput'>Search</label>
+          <div className="control">
+            <input id='searchInput' className="input" type="text" placeholder="Search input" />
+          </div>
+        </div>
+        <div className='content'>
+          <table className="table">
+            <thead>
+              <tr>
+                <th><span className='sort-btn _asc'>ID</span></th>
+                <th><span className='sort-btn'>Name</span></th>
+                <th><span className='sort-btn'>Age</span></th>
+                <th>Phone</th>
+              </tr>
+            </thead>
+            <tbody>
+              {users}
+            </tbody>
+          </table>
+        </div>  
       </div>
     );
   }
