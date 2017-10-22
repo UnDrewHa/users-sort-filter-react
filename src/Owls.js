@@ -1,12 +1,19 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
+import SearchField from './SearchField.js'
+import OwlsTable from './OwlsTable.js'
+
 class Owls extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
-      users: []
+      users: [],
+      searchValue: ''
     };
+
+    this.onChangeHandler = this.onChangeHandler.bind(this);
   }
 
   componentDidMount() {
@@ -21,31 +28,19 @@ class Owls extends Component {
     
   }
 
+  onChangeHandler(e) {
+    this.setState({
+      searchValue: e.target.value
+    });
+  }
+
   render() {
-    let users = this.state.users.map(user => <tr key={user.id}><td>{user.id}</td><td>{user.name}</td><td>{user.age}</td><td>{user.phone}</td></tr>);
     return (
       <div className='container'>
-        <div className="field">
-          <label className="label" for='searchInput'>Search</label>
-          <div className="control">
-            <input id='searchInput' className="input" type="text" placeholder="Search input" />
-          </div>
-        </div>
+        <SearchField value={this.state.searchValue} onChange={this.onChangeHandler} />
         <div className='content'>
-          <table className="table">
-            <thead>
-              <tr>
-                <th><span className='sort-btn _asc'>ID</span></th>
-                <th><span className='sort-btn'>Name</span></th>
-                <th><span className='sort-btn'>Age</span></th>
-                <th>Phone</th>
-              </tr>
-            </thead>
-            <tbody>
-              {users}
-            </tbody>
-          </table>
-        </div>  
+          <OwlsTable users={this.state.users} searchValue={this.state.searchValue} />
+        </div>
       </div>
     );
   }
